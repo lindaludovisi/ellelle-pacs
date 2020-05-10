@@ -52,11 +52,14 @@ class AlexNet(nn.Module):
         )
         
 
-    def forward(self, x):
+    def forward(self, x, flag = None):
         x = self.features(x)
         x = self.avgpool(x)
         x = torch.flatten(x, 1)
-        x = self.classifier(x)
+        if flag is not None:
+            x = self.classifier(x)
+        elif flag == 'domain':
+            x = self.domain_classifier(x)
         return x
 
 
