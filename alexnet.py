@@ -56,7 +56,7 @@ class AlexNet(nn.Module):
         x = self.features(x)
         x = self.avgpool(x)
         x = torch.flatten(x, 1)
-        if flag is not None:
+        if flag is None:
             x = self.classifier(x)
         elif flag == 'domain':
             x = self.domain_classifier(x)
